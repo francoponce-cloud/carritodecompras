@@ -41,4 +41,11 @@
             productoID = producto.querySelector('a').getAttribute('data-id');
         }
     }
+    vaciarCarrito(e){
+        e.preventDefault();
+        while(listaPorductos.firstChild){
+            listaPorductos.removeChild(listaPorductos.firstChild);
+        }
+        return false;
+    }
 }

@@ -32,4 +32,13 @@
         `;
         listaPorductos.appendChild(row);
     }
+    eliminarPorducto(e){
+        e.preventDefault();
+        let producto, productoID;
+        if(e.target.classList.contains('borrar-producto')){
+            e.target.parentElement.parentElement.remove();
+            producto = e.target.parentElement.parentElement;
+            productoID = producto.querySelector('a').getAttribute('data-id');
+        }
+    }
 }

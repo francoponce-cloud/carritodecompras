@@ -31,6 +31,7 @@
         </td>
         `;
         listaPorductos.appendChild(row);
+        this.guardarProductosLocalStorage(producto);
     }
     eliminarPorducto(e){
         e.preventDefault();
@@ -47,5 +48,30 @@
             listaPorductos.removeChild(listaPorductos.firstChild);
         }
         return false;
+    }
+
+    // Guardar los datos en local storage
+    guardarProductosLocalStorage(producto){
+        let productos;
+        productos = this.obtenerProductosLocalStorage();
+        productos.push(producto);
+        localStorage.setItem('productos', JSON.stringify(productos));
+    
+    }
+
+    // Creamos obtener productos porque primero queremos saber si hay o no hay en local storage
+    // Si los hay lo agrega despues del ultimo
+    obtenerProductosLocalStorage(){
+        let productoLS;
+
+        // Comprobación si hay algo en local storage
+
+        if(localStorage.getItem('productos') === null){
+            productoLS = []; // Si no hay nada lo crea en vacio 
+        }else{
+            productoLS = JSON.parse(localStorage.getItem('producto'));
+
+        }
+        return productoLS; 
     }
 }

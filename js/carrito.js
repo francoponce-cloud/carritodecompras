@@ -17,7 +17,26 @@
       id: producto.querySelector("a").getAttribute("data-id"),
       cantidad: 1,
     };
-    this.insertarCarrito(infoProducto);
+    let productosLS;
+    productosLS = this.obtenerProductosLocalStorage();
+    productosLS.forEach(function(productoLS){
+        if(productoLS.id === infoProducto.id){
+            productosLS = productoLS.id; // Si coincide el id de producto que ya seleccionamos con el que ya esta en local storage lo almacenamos en el productosLS
+        }
+    });
+    // Ahora compramos el id de producto con el que esta en local storage
+    // Si agregamos dos veces el producto le mostramos un cartel con sweetalert2 io de que ya esta agregado
+    if(productosLS === infoProducto.id){
+        Swal.fire({
+            type: 'info',
+            title: 'Oops...',
+            text: 'El producto ya esta agregado',
+            timer: 2000,
+            showConfirmButton: false
+          })
+    } else {
+        this.insertarCarrito(infoProducto);
+    }
   }
   insertarCarrito(producto) {
     const row = document.createElement("tr");

@@ -41,6 +41,7 @@
             producto = e.target.parentElement.parentElement;
             productoID = producto.querySelector('a').getAttribute('data-id');
         }
+        this.eliminarPorductoLocalStorage(productoID);
     }
     vaciarCarrito(e){
         e.preventDefault();
@@ -73,5 +74,21 @@
 
         }
         return productoLS; 
+    }
+
+    eliminarPorductoLocalStorage(productoID){
+        let productosLS; // Declaramos la variable que vamos a usar
+        productosLS = this.obtenerProductosLocalStorage() // Obtenemos los elementos del local storage
+
+        // Ahora lo que hacemos es comprar
+        productosLS.forEach(function(productoLS, index){ // idex para saber la posición
+                if(productoLS.id === productoID){
+                productosLS.splice(index, 1); // borra un elemento en la posición index
+            }
+        });
+
+        // Ahora lo que hacemos es actualizar
+
+        localStorage.setItem('productos', JSON.stringify(productosLS))
     }
 }

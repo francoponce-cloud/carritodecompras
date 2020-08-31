@@ -49,6 +49,7 @@
     while (listaPorductos.firstChild) {
       listaPorductos.removeChild(listaPorductos.firstChild);
     }
+    this.vaciarLocalStorage(); // Aca es donde ejecuta la línea 120 para que ademas de en el DOM borre los elementos en local storage 
     return false;
   }
 
@@ -112,5 +113,11 @@
         `;
       listaPorductos.appendChild(row);
     });
+  }
+
+  // Esta lógica es para borrar los datos del local storage ya que anterior era solo sacarlo dentro del DOM
+  // Cuando le damos en vaciar carrito es que se va a ejecutar
+  vaciarLocalStorage(){
+      localStorage.clear();
   }
 }

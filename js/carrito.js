@@ -139,4 +139,21 @@
   vaciarLocalStorage(){
       localStorage.clear();
   }
+
+  // Esta lógica es para cuando agregamos un producto y le damos en procesar compra que nos va a llevar a la parte que corresponde
+  procesarPedido(e){
+      e.preventDefault();
+      if(this.obtenerProductosLocalStorage().length === 0){ // Si no hay nada hacemos salir un mensaje que dura dos segundos indicando que primero hay que seleccionar un producto
+        Swal.fire({
+            type: 'info',
+            title: 'Oops...',
+            text: 'El carrito esta vacio, agrega algún producto',
+            timer: 2000,
+            showConfirmButton: false
+          })
+      } else {
+        location.href = "compra.html"; // En caso de que haya un producto lo lleva a procesar la compra
+      }
+      
+  }
 }

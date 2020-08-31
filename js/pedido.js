@@ -3,6 +3,7 @@ const carrito = document.getElementById('carrito');
 const productos = document.getElementById('lista-productos');
 const listaPorductos = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+const procesarPedidoBtn = document.getElementById('procesar-pedido');
 
 cargarEventos();
 function cargarEventos(){
@@ -13,4 +14,6 @@ function cargarEventos(){
     vaciarCarritoBtn.addEventListener('click', (e)=>{carro.vaciarCarrito(e)});
 
     document.addEventListener('DOMContentLoaded', carro.leerLocalStorage());
+
+    procesarPedidoBtn.addEventListener('click', (e) =>(carro.procesarPedido(e)));
 }
